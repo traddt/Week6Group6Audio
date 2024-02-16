@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Audio Groupwork 6</title>
+		
+		<style> 
+			h3 {  
+				font-size: 30px; 
+				text-align: center; 
+			} 
+  
+		</style> 
+		
+		<script>
+			function trackLen() {
+				var x = document.getElementById("myAudio").duration;
+				document.getElementById("demo").innerHTML = "Length is " + x;
+			}
+			
+			function checkPause() {
+				var x = document.getElementById("myAudio").paused;
+				if (!x) {
+					document.getElementById("pause").innerHTML = "PLAYING";
+				} else {
+					document.getElementById("pause").innerHTML = "";
+				}
+			}
+			
+			function startEnd() {
+				var x = document.getElementById("myAudio");
+				document.getElementById("time").innerHTML = "Played from " + x.played.start(0) + " to " + x.played.end(0) + ", and currently at " + x.currentTime;
+				checkPause();
+			}
+			
+			function audVolume() {
+				var x = document.getElementById("myAudio");
+				document.getElementById("vol").innerHTML = "Track Volume is " + x.volume;
+			}
+		</script>
+	</head>
+	
+	<body onload="setInterval(function(){startEnd()},1)">
+
+		<h3>A demonstration of how to access a AUDIO element</h3>
+
+		<audio id="myAudio" controls>
+			<source src="1stDownCheer.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+
+		<p>Click the buttons below to try  to get the duration of the audio, in seconds.</p>
+
+		<button onclick="trackLen()">Track Length</button>
+		<button onclick="audVolume()">Audio Volume</button>
+
+		<p id="demo"></p>
+		<p id="time"></p>
+		<p id="vol"></p>
+		<p id="pause"></p>
+
+
+	</body>
+</html>
